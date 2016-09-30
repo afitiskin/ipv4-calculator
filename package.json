@@ -4,7 +4,7 @@
   "description": "Calculator for IPv4 networks",
   "main": "dist/index.js",
   "scripts": {
-    "lint": "elint ./src/**/*.js",
+    "lint": "eslint ./src/**/*.js",
     "pretest": "npm run build",
     "test": "mocha --compilers js:babel-register test/*",
     "tdd": "npm run build -- --watch | npm run test -- --watch",

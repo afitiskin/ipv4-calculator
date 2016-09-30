@@ -1,0 +1,69 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "globals": {
+    "PRODUCTION": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "quotes": ["warn", "single", {
+      "avoidEscape": true,
+      "allowTemplateLiterals": true
+    }],
+
+    "array-callback-return": [2],
+    "block-scoped-var": [1],
+    "curly": [2, "all"],
+    "default-case": [2],
+    "dot-location": [1, "property"],
+    "dot-notation": [1, {
+      "allowPattern": "^[a-z]+(_[a-z]+)+$"
+    }],
+    "guard-for-in": [2],
+    "no-alert": [2],
+    "no-caller": [2],
+    "no-eq-null": [2],
+    "no-eval": [2],
+    "no-extend-native": [2],
+    "no-extra-bind": [2],
+    "no-floating-decimal": [2],
+    "no-implicit-globals": [2],
+    "no-implied-eval": [2],
+    "no-iterator": [2],
+    "no-labels": [2],
+    "no-lone-blocks": [2],
+    "no-loop-func": [2],
+    "no-magic-numbers": [0],
+    "no-multi-spaces": [1],
+    "no-new-func": [2],
+    "no-new-wrappers": [2],
+    "no-new": [2],
+    "no-octal-escape": [2],
+    "no-proto": [2],
+    "no-return-assign": [2],
+    "no-self-compare": [2],
+    "no-sequences": [2],
+    "no-useless-call": [2],
+    "no-useless-concat": [2],
+    "no-useless-escape": [1],
+    "no-void": [2],
+    "no-warning-comments": [1],
+    "no-with": [2],
+    "wrap-iife": [2],
+    "yoda": [1]
+  }
+}

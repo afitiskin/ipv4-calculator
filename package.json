@@ -1,6 +1,6 @@
 {
   "name": "ipv4-calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Calculator for IPv4 networks",
   "main": "dist/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "test": "mocha --compilers js:babel-register test/*",
     "tdd": "npm run build -- --watch | npm run test -- --watch",
     "build": "NODE_ENV=production babel src/ --out-dir dist/",
-    "prepublish": "npm run build"
+    "prepublish": "npm run test"
   },
   "keywords": [
     "ip",

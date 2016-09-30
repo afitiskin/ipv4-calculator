@@ -51,19 +51,19 @@ describe('Validator', () => {
 
   describe('is IP valid', () => {
     it('should be a function', () => {
-      expect(isIpNumberValid).to.be.a('function');
+      expect(isIpValid).to.be.a('function');
     });
 
     it('should return true if IP valid', () => {
-      expect(isIpNumberValid('0.0.0.0')).to.be.true;
-      expect(isIpNumberValid('192.168.0.29')).to.be.true;
-      expect(isIpNumberValid('255.255.255.255')).to.be.true;
+      expect(isIpValid('0.0.0.0')).to.be.true;
+      expect(isIpValid('192.168.0.29')).to.be.true;
+      expect(isIpValid('255.255.255.255')).to.be.true;
     });
 
     it('should return false if IP invalid', () => {
-      expect(isNetworkValid('')).to.be.false;
-      expect(isNetworkValid('192.256.0.1')).to.be.false;
-      expect(isNetworkValid('192.250.0.1.1')).to.be.false;
+      expect(isIpValid('')).to.be.false;
+      expect(isIpValid('192.256.0.1')).to.be.false;
+      expect(isIpValid('192.250.0.1.1')).to.be.false;
     });
   });
 

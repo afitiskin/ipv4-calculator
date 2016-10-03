@@ -5,6 +5,8 @@ import {
   getNetworkFirstIp,
   getNetworkBroadcastIp,
   getNetworkIps,
+  getNetworkIpsQuantityByMask,
+  getNetworkIpsQuantity,
 } from '../src';
 
 describe('IPv4 calculator', () => {
@@ -58,6 +60,42 @@ describe('IPv4 calculator', () => {
 
       const list2 = getNetworkIps('10.20.30.40/23');
       expect(list2.length).to.equal(512);
+    });
+  });
+
+  describe('get network IPs quantity', () => {
+    it('should be a function', () => {
+      expect(getNetworkIpsQuantity).to.be.a('function');
+    });
+
+    it('should throw error if network is invalid', () => {
+      expect(getNetworkIpsQuantity.bind(null, 'x.x.x.x/yy')).to.throw(Error);
+    });
+
+    it('should return quantity of IPs of network', () => {
+      const quantity1 = getNetworkIpsQuantity('192.210.0.25/30');
+      expect(quantity1).to.equal(4);
+
+      const quantity2 = getNetworkIpsQuantity('10.20.30.40/23');
+      expect(quantity2).to.equal(512);
+    });
+  });
+
+  describe('get network IPs quantity by mask', () => {
+    it('should be a function', () => {
+      expect(getNetworkIpsQuantityByMask).to.be.a('function');
+    });
+
+    it('should throw error if mask is invalid', () => {
+      expect(getNetworkIpsQuantityByMask.bind(null, -1)).to.throw(Error);
+    });
+
+    it('should return quantity of IPs of network by mask', () => {
+      const quantity1 = getNetworkIpsQuantityByMask(30);
+      expect(quantity1).to.equal(4);
+
+      const quantity2 = getNetworkIpsQuantityByMask(23);
+      expect(quantity2).to.equal(512);
     });
   });
 });

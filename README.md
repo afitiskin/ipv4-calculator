@@ -13,6 +13,8 @@ import * as ipCalculator from 'ipv4-calculator';
 ipCalculator.getNetworkFirstIp('192.210.0.11/30'); // '192.210.0.8'
 ipCalculator.getNetworkBroadcastIp('192.210.0.25/28'); // '192.210.0.31'
 ipCalculator.getNetworkIps('192.210.0.25/30'); // ['192.210.0.24', '192.210.0.25', '192.210.0.26', '192.210.0.27']
+ipCalculator.getNetworkIpsQuantity('192.210.0.25/30'); // 4
+ipCalculator.getNetworkIpsQuantityByMask(30); // 4
 ```
 
 ## Other
@@ -31,9 +33,9 @@ utils.binaryStringToIp('11000000101010000000000000011101'); // '192.168.0.29'
 utils.ipToNumber('192.168.0.29'); // 3232235549
 utils.ipNumberToIp(3232235549); // '192.168.0.29'
 
-utils.ipNumberToBinaryString(3232235549); // 11000000101010000000000000011101
+utils.ipNumberToBinaryString(3232235549); // '11000000101010000000000000011101'
 
-utils.maskToBinaryString(31); // 11111111111111111111111111111110
+utils.maskToBinaryString(31); // '11111111111111111111111111111110'
 utils.binaryStringToMask('11111111111111111111111111111110'); // 31
 ```
 

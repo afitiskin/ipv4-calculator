@@ -11,7 +11,8 @@ import {
 
 import {
   decorate,
-  validateNetworkAddressDecorator
+  validateNetworkAddressDecorator,
+  validateMaskDecorator,
 } from './decorators';
 
 
@@ -25,6 +26,16 @@ export const getNetworkBroadcastIp = decorate(network => {
   const [ ip, mask ] = network.split('/');
 
   return binaryStringToIp(bitwise.or(ipToBinaryString(ip), bitwise.not(maskToBinaryString(mask))));
+}, validateNetworkAddressDecorator);
+
+export const getNetworkIpsQuantityByMask = decorate(mask => {
+  return Math.pow(2, 32 - mask);
+}, validateMaskDecorator);
+
+export const getNetworkIpsQuantity = decorate(network => {
+  const [ ip, mask ] = network.split('/');
+
+  return getNetworkIpsQuantityByMask(mask);
 }, validateNetworkAddressDecorator);
 
 export const getNetworkIps = decorate(network => {

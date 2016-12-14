@@ -1,9 +1,12 @@
 import 'babel-polyfill';
+import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
 import {
   getNetworkFirstIp,
+  getNetworkFirstIpAsArray,
   getNetworkBroadcastIp,
+  getNetworkBroadcastIpAsArray,
   getNetworkIps,
   getNetworkIpsQuantityByMask,
   getNetworkIpsQuantity,
@@ -25,6 +28,21 @@ describe('IPv4 calculator', () => {
     });
   });
 
+  describe('get network first IP as array', () => {
+    it('should be a function', () => {
+      expect(getNetworkFirstIpAsArray).to.be.a('function');
+    });
+
+    it('should throw error if network is invalid', () => {
+      expect(getNetworkFirstIpAsArray.bind(null, 'x.x.x.x/yy')).to.throw(Error);
+    });
+
+    it('should return first IP address of the network', () => {
+      expect(getNetworkFirstIpAsArray('192.168.0.29/16')).to.eql([192, 168, 0, 0]);
+      expect(getNetworkFirstIpAsArray('192.210.0.11/30')).to.eql([192, 210, 0, 8]);
+    });
+  });
+
   describe('get network broadcast IP', () => {
     it('should be a function', () => {
       expect(getNetworkBroadcastIp).to.be.a('function');
@@ -37,6 +55,21 @@ describe('IPv4 calculator', () => {
     it('should return broadcast IP address of the network', () => {
       expect(getNetworkBroadcastIp('192.210.0.25/28')).to.equal('192.210.0.31');
       expect(getNetworkBroadcastIp('10.20.30.40/23')).to.equal('10.20.31.255');
+    });
+  });
+
+  describe('get network broadcast IP as array', () => {
+    it('should be a function', () => {
+      expect(getNetworkBroadcastIpAsArray).to.be.a('function');
+    });
+
+    it('should throw error if network is invalid', () => {
+      expect(getNetworkBroadcastIpAsArray.bind(null, 'x.x.x.x/yy')).to.throw(Error);
+    });
+
+    it('should return broadcast IP address of the network', () => {
+      expect(getNetworkBroadcastIpAsArray('192.210.0.25/28')).to.eql([192, 210, 0, 31]);
+      expect(getNetworkBroadcastIpAsArray('10.20.30.40/23')).to.eql([10, 20, 31, 255]);
     });
   });
 

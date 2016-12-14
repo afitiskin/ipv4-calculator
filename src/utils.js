@@ -30,8 +30,16 @@ export const ipToNumberRaw = (ip) => {
   return binaryStringToNumber(ipToBinaryString(ip));
 };
 
+export const binaryStringToIpAsArrayRaw = (binaryString) => {
+  return (binaryString + '').match(/[0,1]{8}/g).map(binaryStringToNumber);
+};
+
 export const binaryStringToIpRaw = (binaryString) => {
-  return (binaryString + '').match(/[0,1]{8}/g).map(binaryStringToNumber).join('.');
+  return binaryStringToIpAsArrayRaw(binaryString).join('.');
+};
+
+export const ipNumberToIpAsArrayRaw = (ipNumber) => {
+  return binaryStringToIpAsArrayRaw(ipNumberToBinaryStringRaw(ipNumber));
 };
 
 export const ipNumberToIpRaw = (ipNumber) => {
@@ -54,7 +62,9 @@ export const binaryStringToMaskRaw = (binaryString) => {
 export const ipToBinaryString = decorate(ipToBinaryStringRaw, validateIpDecorator);
 export const ipToNumber = decorate(ipToNumberRaw, validateIpDecorator);
 export const binaryStringToIp = decorate(binaryStringToIpRaw, validateBinaryStringDecorator);
+export const binaryStringToIpAsArray = decorate(binaryStringToIpAsArrayRaw, validateBinaryStringDecorator);
 export const ipNumberToIp = decorate(ipNumberToIpRaw, validateIpNumberDecorator);
+export const ipNumberToIpAsArray = decorate(ipNumberToIpAsArrayRaw, validateIpNumberDecorator);
 export const ipNumberToBinaryString = decorate(ipNumberToBinaryStringRaw, validateIpNumberDecorator);
 export const maskToBinaryString = decorate(maskToBinaryStringRaw, validateMaskDecorator);
 export const binaryStringToMask = decorate(binaryStringToMaskRaw, validateBinaryStringDecorator);

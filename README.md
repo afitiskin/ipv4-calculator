@@ -11,7 +11,9 @@ npm install ipv4-calculator --save
 import * as ipCalculator from 'ipv4-calculator';
 
 ipCalculator.getNetworkFirstIp('192.210.0.11/30'); // '192.210.0.8'
+ipCalculator.getNetworkFirstIpAsArray('192.210.0.11/30'); // [192, 210, 0, 8]
 ipCalculator.getNetworkBroadcastIp('192.210.0.25/28'); // '192.210.0.31'
+ipCalculator.getNetworkBroadcastIpAsArray('192.210.0.25/28'); // [192, 210, 0, 31]
 ipCalculator.getNetworkIps('192.210.0.25/30'); // ['192.210.0.24', '192.210.0.25', '192.210.0.26', '192.210.0.27']
 ipCalculator.getNetworkIpsQuantity('192.210.0.25/30'); // 4
 ipCalculator.getNetworkIpsQuantityByMask(30); // 4

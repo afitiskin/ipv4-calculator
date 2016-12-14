@@ -1,12 +1,12 @@
 import * as bitwise from './bitwise';
 import {
-  ipToBinaryString,
-  binaryStringToIp,
+  ipToBinaryStringRaw,
+  binaryStringToIpRaw,
 
-  maskToBinaryString,
+  maskToBinaryStringRaw,
 
-  ipToNumber,
-  ipNumberToIp,
+  ipToNumberRaw,
+  ipNumberToIpRaw,
 } from './utils';
 
 import {
@@ -16,33 +16,33 @@ import {
 } from './decorators';
 
 
-export const getNetworkFirstIp = decorate(network => {
+export const getNetworkFirstIp = decorate((network) => {
   const [ ip, mask ] = network.split('/');
 
-  return binaryStringToIp(bitwise.and(ipToBinaryString(ip), maskToBinaryString(mask)));
+  return binaryStringToIpRaw(bitwise.and(ipToBinaryStringRaw(ip), maskToBinaryStringRaw(mask)));
 }, validateNetworkAddressDecorator);
 
-export const getNetworkBroadcastIp = decorate(network => {
+export const getNetworkBroadcastIp = decorate((network) => {
   const [ ip, mask ] = network.split('/');
 
-  return binaryStringToIp(bitwise.or(ipToBinaryString(ip), bitwise.not(maskToBinaryString(mask))));
+  return binaryStringToIpRaw(bitwise.or(ipToBinaryStringRaw(ip), bitwise.not(maskToBinaryStringRaw(mask))));
 }, validateNetworkAddressDecorator);
 
-export const getNetworkIpsQuantityByMask = decorate(mask => {
+export const getNetworkIpsQuantityByMask = decorate((mask) => {
   return Math.pow(2, 32 - mask);
 }, validateMaskDecorator);
 
-export const getNetworkIpsQuantity = decorate(network => {
-  const [ ip, mask ] = network.split('/');
+export const getNetworkIpsQuantity = decorate((network) => {
+  const [ ip, mask ] = network.split('/'); // eslint-disable-line no-unused-vars
 
   return getNetworkIpsQuantityByMask(mask);
 }, validateNetworkAddressDecorator);
 
-export const getNetworkIps = decorate(network => {
+export const getNetworkIps = decorate((network) => {
   const result = [];
 
-  for (let i = ipToNumber(getNetworkFirstIp(network)); i <= ipToNumber(getNetworkBroadcastIp(network)); i++) {
-    result.push(ipNumberToIp(i));
+  for (let i = ipToNumberRaw(getNetworkFirstIp(network)); i <= ipToNumberRaw(getNetworkBroadcastIp(network)); i++) {
+    result.push(ipNumberToIpRaw(i));
   }
 
   return result;

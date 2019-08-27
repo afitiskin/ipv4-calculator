@@ -1,5 +1,3 @@
-import leftPad from 'left-pad';
-
 import {
   MIN_MASK_VALUE,
   MAX_MASK_VALUE,
@@ -69,5 +67,7 @@ export const validateIpNumberDecorator = fn => ipNumber => {
 
 export const normalizeBinaryStrings = fn => (a, b) => {
   const length = Math.max(a.length, b.length);
-  return fn(leftPad(a, length, '0'), leftPad(b, length, '0'));
+  const aNormal = ['0'.repeat(length - a.length), a].join('');
+  const bNormal = ['0'.repeat(length - b.length), b].join('');
+  return fn(aNormal, bNormal);
 };

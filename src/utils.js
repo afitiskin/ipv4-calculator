@@ -1,5 +1,3 @@
-import leftPad from 'left-pad';
-
 import {
   DECIMAL_BASE,
   BINARY_BASE,
@@ -15,7 +13,8 @@ import {
 } from './decorators';
 
 export const numberToBinaryString = (byte, length) => {
-  return leftPad(parseInt(byte, DECIMAL_BASE).toString(BINARY_BASE), length, '0');
+  const string = parseInt(byte, DECIMAL_BASE).toString(BINARY_BASE);
+  return length > string.length ? ['0'.repeat(length - string.length), string].join('') : string;
 };
 
 export const binaryStringToNumber = (binaryString) => {
